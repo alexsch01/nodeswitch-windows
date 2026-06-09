@@ -3,10 +3,10 @@ if ([Environment]::OSVersion.Platform -ne "Win32NT" -or $env:PROCESSOR_ARCHITECT
     exit 1
 }
 
-irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch -OutFile "C:\scripts\nodeswitch"
-irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd -OutFile "C:\scripts\nodeswitch.cmd"
-irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1 -OutFile "C:\scripts\nodeswitch.ps1"
-irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh -OutFile "C:\scripts\nodeswitch.sh"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch" -OutFile "C:\scripts\nodeswitch"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd" -OutFile "C:\scripts\nodeswitch.cmd"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1" -OutFile "C:\scripts\nodeswitch.ps1"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh" -OutFile "C:\scripts\nodeswitch.sh"
 
 # copy .\bin\nodeswitch %AppData%\npm
 # copy .\bin\nodeswitch.cmd %AppData%\npm

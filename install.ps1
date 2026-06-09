@@ -12,6 +12,14 @@ Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs
 Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1" -OutFile "$env:AppData\bin\nodeswitch.ps1"
 Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh" -OutFile "$env:AppData\bin\nodeswitch.sh"
 
+$oldPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$addPath = "$env:AppData\bin"
+
+if ($oldPath -split [IO.Path]::PathSeparator -notcontains $addPath) {
+    $newPath = if ($oldPath) { "$oldPath;$addPath" } else { $addPath }
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+}
+
 $bashProfile = "$env:USERPROFILE\.bash_profile"
 if (-not (Select-String -Path $bashProfile -Pattern "alias nodeswitch=" -Quiet)) {
     Add-Content -Path $bashProfile -Value 'alias nodeswitch="source nodeswitch"'

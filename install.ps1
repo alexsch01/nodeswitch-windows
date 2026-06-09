@@ -21,6 +21,9 @@ if ($oldPath -split [IO.Path]::PathSeparator -notcontains $addPath) {
 }
 
 $bashProfile = "$env:USERPROFILE\.bash_profile"
+if (-not (Test-Path $bashProfile)) {
+    New-Item -ItemType File -Path $bashProfile -Force | Out-Null
+}
 if (-not (Select-String -Path $bashProfile -Pattern "alias nodeswitch=" -Quiet)) {
     Add-Content -Path $bashProfile -Value 'alias nodeswitch="source nodeswitch"'
 }

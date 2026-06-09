@@ -7,6 +7,8 @@ Node version switcher for Microsoft Windows x64
 powershell -c "irm https://raw.githubusercontent.com/alexsch01/nodeswitch-windows/main/install.ps1 | iex"
 ```
 
+You will need to reopen your terminal after it is installed
+
 ### Examples
 ```
 nodeswitch add 12.16.3

@@ -7,10 +7,10 @@ if (-not (Test-Path "$env:AppData\bin")) {
     New-Item -ItemType Directory -Path "$env:AppData\bin" | Out-Null
 }
 
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch" -OutFile "$env:AppData\bin\nodeswitch"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd" -OutFile "$env:AppData\bin\nodeswitch.cmd"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1" -OutFile "$env:AppData\bin\nodeswitch.ps1"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh" -OutFile "$env:AppData\bin\nodeswitch.sh"
+Invoke-RestMethod -Uri "https://raw.githubusercontent.com/alexsch01/nodeswitch-windows/main/bin/nodeswitch" -OutFile "$env:AppData\bin\nodeswitch"
+Invoke-RestMethod -Uri "https://raw.githubusercontent.com/alexsch01/nodeswitch-windows/main/bin/nodeswitch.cmd" -OutFile "$env:AppData\bin\nodeswitch.cmd"
+Invoke-RestMethod -Uri "https://raw.githubusercontent.com/alexsch01/nodeswitch-windows/main/bin/nodeswitch.ps1" -OutFile "$env:AppData\bin\nodeswitch.ps1"
+Invoke-RestMethod -Uri "https://raw.githubusercontent.com/alexsch01/nodeswitch-windows/main/bin/nodeswitch.sh" -OutFile "$env:AppData\bin\nodeswitch.sh"
 
 $oldPath = [Environment]::GetEnvironmentVariable("Path", "User")
 $addPath = "$env:AppData\bin"

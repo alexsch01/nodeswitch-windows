@@ -3,15 +3,20 @@ if ([Environment]::OSVersion.Platform -ne "Win32NT" -or $env:PROCESSOR_ARCHITECT
     exit 1
 }
 
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch" -OutFile "C:\scripts\nodeswitch"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd" -OutFile "C:\scripts\nodeswitch.cmd"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1" -OutFile "C:\scripts\nodeswitch.ps1"
-Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh" -OutFile "C:\scripts\nodeswitch.sh"
+if (-not (Test-Path "$env:AppData\bin")) {
+    New-Item -ItemType Directory -Path "$env:AppData\bin" | Out-Null
+}
 
-# copy .\bin\nodeswitch %AppData%\npm
-# copy .\bin\nodeswitch.cmd %AppData%\npm
-# copy .\bin\nodeswitch.ps1 %AppData%\npm
-# copy .\bin\nodeswitch.sh %AppData%\npm
-# findstr /m "alias nodeswitch=" %userprofile%\.bash_profile > nul
-# if %errorlevel% == 1 ( echo alias nodeswitch="source nodeswitch" >> %userprofile%\.bash_profile )
-# if not exist %AppData%\nodeswitch ( mkdir %AppData%\nodeswitch )
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch" -OutFile "$env:AppData\bin\nodeswitch"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd" -OutFile "$env:AppData\bin\nodeswitch.cmd"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1" -OutFile "$env:AppData\bin\nodeswitch.ps1"
+Invoke-RestMethod -Uri "https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh" -OutFile "$env:AppData\bin\nodeswitch.sh"
+
+$bashProfile = "$env:USERPROFILE\.bash_profile"
+if (-not (Select-String -Path $bashProfile -Pattern "alias nodeswitch=" -Quiet)) {
+    Add-Content -Path $bashProfile -Value 'alias nodeswitch="source nodeswitch"'
+}
+
+if (-not (Test-Path "$env:AppData\nodeswitch")) {
+    New-Item -ItemType Directory -Path "$env:AppData\nodeswitch" | Out-Null
+}

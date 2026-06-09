@@ -3,4 +3,15 @@ if ([Environment]::OSVersion.Platform -ne "Win32NT" -or $env:PROCESSOR_ARCHITECT
     exit 1
 }
 
-echo 'hi'
+irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch -OutFile "C:\scripts\nodeswitch"
+irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.cmd -OutFile "C:\scripts\nodeswitch.cmd"
+irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.ps1 -OutFile "C:\scripts\nodeswitch.ps1"
+irm https://github.com/alexsch01/nodeswitch-windows/raw/refs/heads/main/bin/nodeswitch.sh -OutFile "C:\scripts\nodeswitch.sh"
+
+# copy .\bin\nodeswitch %AppData%\npm
+# copy .\bin\nodeswitch.cmd %AppData%\npm
+# copy .\bin\nodeswitch.ps1 %AppData%\npm
+# copy .\bin\nodeswitch.sh %AppData%\npm
+# findstr /m "alias nodeswitch=" %userprofile%\.bash_profile > nul
+# if %errorlevel% == 1 ( echo alias nodeswitch="source nodeswitch" >> %userprofile%\.bash_profile )
+# if not exist %AppData%\nodeswitch ( mkdir %AppData%\nodeswitch )

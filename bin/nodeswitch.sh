@@ -52,7 +52,7 @@ if [ "$1" != "" ]; then
                         rm $nodeswitchAPPDATA/nodeswitch/$2.zip
                         mv $nodeswitchAPPDATA/nodeswitch/node-v$2-win-x64 $nodeswitchAPPDATA/nodeswitch/$2
 
-                        mkdir $nodeswitchAPPDATA/nodeswitch/$2/globalPrefix 
+                        mkdir $nodeswitchAPPDATA/nodeswitch/$2/globalPrefix
                         echo "prefix=$APPDATA\\nodeswitch\\$2\\globalPrefix" > $nodeswitchAPPDATA/nodeswitch/$2/node_modules/npm/npmrc
                     else
                         echo "Node version not found"

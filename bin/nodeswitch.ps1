@@ -53,8 +53,8 @@ if ( $nodeswitch1stParameter -ne $null ) {
                         del $env:AppData\nodeswitch\$nodeswitch2ndParameter.zip
                         cmd /c "move $env:AppData\nodeswitch\node-v$nodeswitch2ndParameter-win-x64 $env:AppData\nodeswitch\$nodeswitch2ndParameter > nul"
 
-                        mkdir $env:AppData\nodeswitch\$nodeswitch2ndParameter\globalPrefix
-                        echo "prefix=$env:AppData\\nodeswitch\\$nodeswitch2ndParameter\\globalPrefix" > $nodeswitchAPPDATA/nodeswitch/$2/node_modules/npm/npmrc
+                        mkdir $env:AppData\nodeswitch\$nodeswitch2ndParameter\globalPrefix > $null
+                        Set-Content -Path "$env:AppData\nodeswitch\$nodeswitch2ndParameter\node_modules\npm\npmrc" -Value "prefix=$env:AppData`\nodeswitch`\$nodeswitch2ndParameter`\globalPrefix" -NoNewline
                     } else {
                         echo "Node version not found" 
                     }

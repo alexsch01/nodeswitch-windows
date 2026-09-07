@@ -19,10 +19,10 @@ if not "%1" == "" (
                 ) else (
                     if exist %AppData%\nodeswitch\%2 (
                         if not defined nodeswitchDefaultPATH (
-							set "nodeswitchDefaultPATH=%PATH%"
-							set "PATH=%AppData%\nodeswitch\%2;%PATH%"
+                            set "nodeswitchDefaultPATH=%PATH%"
+                            set "PATH=%AppData%\nodeswitch\%2;%PATH%"
                         ) else (
-							set "PATH=%AppData%\nodeswitch\%2;%nodeswitchDefaultPATH%"
+                            set "PATH=%AppData%\nodeswitch\%2;%nodeswitchDefaultPATH%"
                         )
                     ) else (
                         echo Node version not installed
@@ -46,6 +46,9 @@ if not "%1" == "" (
 
                         del %AppData%\nodeswitch\%2.zip
                         move %AppData%\nodeswitch\node-v%2-win-x64 %AppData%\nodeswitch\%2 > nul
+
+                        mkdir %AppData%\nodeswitch\%2\globalPrefix
+                        powershell -Command "Set-Content -Path '%AppData%\nodeswitch\%2\node_modules\npm\npmrc' -Value 'prefix=%AppData%\nodeswitch\%2\globalPrefix' -NoNewline"
                     ) || (
                         echo Node version not found
                     )

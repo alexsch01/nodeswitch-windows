@@ -21,9 +21,9 @@ if ( $nodeswitch1stParameter -ne $null ) {
                     if ( Test-Path -Path $env:AppData\nodeswitch\$nodeswitch2ndParameter ) {
                         if ( $global:nodeswitchDefaultPATH -eq $null ) {
 							$global:nodeswitchDefaultPATH = $env:Path
-							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$env:Path"
+							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter\globalPrefix;$env:AppData\nodeswitch\$nodeswitch2ndParameter;$env:Path"
                         } else {
-							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$global:nodeswitchDefaultPATH"
+							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter\globalPrefix;$env:AppData\nodeswitch\$nodeswitch2ndParameter;$global:nodeswitchDefaultPATH"
                         }
                     } else {
                         echo "Node version not installed"
@@ -52,6 +52,9 @@ if ( $nodeswitch1stParameter -ne $null ) {
 
                         del $env:AppData\nodeswitch\$nodeswitch2ndParameter.zip
                         cmd /c "move $env:AppData\nodeswitch\node-v$nodeswitch2ndParameter-win-x64 $env:AppData\nodeswitch\$nodeswitch2ndParameter > nul"
+
+						mkdir $env:AppData\nodeswitch\$nodeswitch2ndParameter\globalPrefix
+						echo "prefix=$env:AppData\\nodeswitch\\$nodeswitch2ndParameter\\globalPrefix" > $nodeswitchAPPDATA/nodeswitch/$2/node_modules/npm/npmrc
                     } else {
                         echo "Node version not found" 
                     }

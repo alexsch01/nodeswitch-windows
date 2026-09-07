@@ -20,10 +20,10 @@ if ( $nodeswitch1stParameter -ne $null ) {
                 } else {
                     if ( Test-Path -Path $env:AppData\nodeswitch\$nodeswitch2ndParameter ) {
                         if ( $global:nodeswitchDefaultPATH -eq $null ) {
-			    $global:nodeswitchDefaultPATH = $env:Path
-			    $env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$env:Path"
+							$global:nodeswitchDefaultPATH = $env:Path
+							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$env:Path"
                         } else {
-			    $env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$global:nodeswitchDefaultPATH"
+							$env:Path = "$env:AppData\nodeswitch\$nodeswitch2ndParameter;$global:nodeswitchDefaultPATH"
                         }
                     } else {
                         echo "Node version not installed"

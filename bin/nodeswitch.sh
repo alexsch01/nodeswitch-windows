@@ -20,9 +20,9 @@ if [ "$1" != "" ]; then
                     if [ -d "$nodeswitchAPPDATA/nodeswitch/$2" ]; then
                         if [ -z "$nodeswitchDefaultPATH" ]; then
                             export nodeswitchDefaultPATH=$PATH
-                            export PATH=$nodeswitchAPPDATA/nodeswitch/$2:PATH=$nodeswitchAPPDATA/nodeswitch/$2/globalPrefix:$PATH
+                            export PATH=$nodeswitchAPPDATA/nodeswitch/$2/globalPrefix:$nodeswitchAPPDATA/nodeswitch/$2:$PATH
                         else
-                            export PATH=$nodeswitchAPPDATA/nodeswitch/$2:PATH=$nodeswitchAPPDATA/nodeswitch/$2/globalPrefix:$nodeswitchDefaultPATH
+                            export PATH=$nodeswitchAPPDATA/nodeswitch/$2/globalPrefix:$nodeswitchAPPDATA/nodeswitch/$2:$nodeswitchDefaultPATH
                         fi
                     else
                         echo "Node version not installed"

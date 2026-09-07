@@ -20,9 +20,9 @@ if not "%1" == "" (
                     if exist %AppData%\nodeswitch\%2 (
                         if not defined nodeswitchDefaultPATH (
                             set "nodeswitchDefaultPATH=%PATH%"
-                            set "PATH=%AppData%\nodeswitch\%2;%PATH%"
+                            set "PATH=%AppData%\nodeswitch\%2\globalPrefix;%AppData%\nodeswitch\%2;%PATH%"
                         ) else (
-                            set "PATH=%AppData%\nodeswitch\%2;%nodeswitchDefaultPATH%"
+                            set "PATH=%AppData%\nodeswitch\%2\globalPrefix;%AppData%\nodeswitch\%2;%nodeswitchDefaultPATH%"
                         )
                     ) else (
                         echo Node version not installed

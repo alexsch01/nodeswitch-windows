@@ -30,9 +30,9 @@ if [ "$1" != "" ]; then
                 fi
             elif [ "$1" = "add" ]; then
                 if [ ! -d "$nodeswitchAPPDATA/nodeswitch/$2" ]; then
-                    curl -f https://nodejs.org/download/release/v$2/ &>/dev/null
+                    /c/Windows/System32/curl -f https://nodejs.org/download/release/v$2/ &>/dev/null
                     if [ $? -eq 0 ]; then
-                        curl -s -o $nodeswitchAPPDATA/nodeswitch/$2.zip https://nodejs.org/download/release/v$2/node-v$2-win-x64.zip > /dev/null
+                        /c/Windows/System32/curl -s -o $nodeswitchAPPDATA/nodeswitch/$2.zip https://nodejs.org/download/release/v$2/node-v$2-win-x64.zip > /dev/null
 
                         if [ $? -ne 0 ]; then
                             rm $nodeswitchAPPDATA/nodeswitch/$2.zip

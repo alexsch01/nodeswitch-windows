@@ -48,7 +48,7 @@ if not "%1" == "" (
                         move %AppData%\nodeswitch\node-v%2-win-x64 %AppData%\nodeswitch\%2 > nul
 
                         mkdir %AppData%\nodeswitch\%2\globalPrefix
-                        powershell -Command "Set-Content -Path '%AppData%\nodeswitch\%2\etc\npmrc' -Value 'prefix=%AppData%\nodeswitch\%2\globalPrefix' -NoNewline"
+                        powershell -Command "Set-Content -Path '%AppData%\nodeswitch\%2\node_modules\npm\npmrc' -Value 'prefix=%AppData%\nodeswitch\%2\globalPrefix' -NoNewline"
                     ) || (
                         echo Node version not found
                     )

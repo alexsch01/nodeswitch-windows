@@ -1,6 +1,6 @@
 @echo off
 
-if "%PROCESSOR_ARCHITECTURE" == "ARM64" (
+if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
     set "nodeswitchArch=arm64"
 ) else (
     set "nodeswitchArch=x64"

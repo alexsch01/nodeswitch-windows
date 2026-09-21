@@ -1,11 +1,5 @@
 @echo off
 
-if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
-    set "nodeswitchArch=arm64"
-) else (
-    set "nodeswitchArch=x64"
-)
-
 if not "%1" == "" (
     if not "%2" == "" (
         if not "%3" == "" (
@@ -35,6 +29,14 @@ if not "%1" == "" (
                     )
                 )
             ) else if "%1" == "add" (
+                setlocal
+
+                if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
+                    set "nodeswitchArch=arm64"
+                ) else (
+                    set "nodeswitchArch=x64"
+                )
+
                 if not exist %AppData%\nodeswitch\%2 (
                     C:\Windows\System32\curl -f https://nodejs.org/download/release/v%2/ > nul 2>&1 && (
                         C:\Windows\System32\curl -s -o %AppData%\nodeswitch\%2.zip https://nodejs.org/download/release/v%2/node-v%2-win-%nodeswitchArch%.zip > nul || (
@@ -61,6 +63,8 @@ if not "%1" == "" (
                 ) else (
                     echo Node version already added
                 )
+
+                endlocal
             ) else (
                 echo Incorrect command
             )

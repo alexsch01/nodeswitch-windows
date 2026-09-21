@@ -29,7 +29,7 @@ if not "%1" == "" (
                     )
                 )
             ) else if "%1" == "add" (
-                setlocal
+                setlocal EnableDelayedExpansion
 
                 if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
                     set "nodeswitchArch=arm64"
@@ -39,7 +39,7 @@ if not "%1" == "" (
 
                 if not exist %AppData%\nodeswitch\%2 (
                     C:\Windows\System32\curl -f https://nodejs.org/download/release/v%2/ > nul 2>&1 && (
-                        C:\Windows\System32\curl -s -o %AppData%\nodeswitch\%2.zip https://nodejs.org/download/release/v%2/node-v%2-win-%nodeswitchArch%.zip > nul || (
+                        C:\Windows\System32\curl -s -o %AppData%\nodeswitch\%2.zip https://nodejs.org/download/release/v%2/node-v%2-win-!nodeswitchArch!.zip > nul || (
                             del %AppData%\nodeswitch\%2.zip
                             echo Node version not created
                             exit
@@ -47,13 +47,13 @@ if not "%1" == "" (
 
                         C:\Windows\System32\tar -xf %AppData%\nodeswitch\%2.zip -C %AppData%\nodeswitch || (
                             del %AppData%\nodeswitch\%2.zip
-                            rd /s /q %AppData%\nodeswitch\node-v%2-win-%nodeswitchArch%
+                            rd /s /q %AppData%\nodeswitch\node-v%2-win-!nodeswitchArch!
                             echo Node version not created
                             exit
                         )
 
                         del %AppData%\nodeswitch\%2.zip
-                        move %AppData%\nodeswitch\node-v%2-win-%nodeswitchArch% %AppData%\nodeswitch\%2 > nul
+                        move %AppData%\nodeswitch\node-v%2-win-!nodeswitchArch! %AppData%\nodeswitch\%2 > nul
 
                         mkdir %AppData%\nodeswitch\%2\globalPrefix
                         powershell -Command "Set-Content -Path '%AppData%\nodeswitch\%2\node_modules\npm\npmrc' -Value 'prefix=%AppData%\nodeswitch\%2\globalPrefix' -NoNewline"

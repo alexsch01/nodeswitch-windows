@@ -1,6 +1,6 @@
 # nodeswitch-windows
 
-Node version switcher for Microsoft Windows x64
+Node version switcher for Microsoft Windows
 
 ### How To Install
 ```
